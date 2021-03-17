@@ -1,19 +1,41 @@
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
+import React from "react";
+import { NavLink } from 'react-router-dom';
+import { Navbar, Nav, ButtonGroup, Button } from 'react-bootstrap';
 
 
-const NavBar = () => {
+const Navigation = () => {
+
   return (
-   <Navbar className='sticky-top inline-flex justify-content-between mb-1' expand="lg" bg="danger" variant="danger" >
-   <Navbar.Brand href="#home">
-     <h1 className='light'>POKEDEX</h1>
-   </Navbar.Brand>
-   <div className=''>
-   <Button>Home</Button>
-   <Button>Catched</Button>
-   </div>
- </Navbar>
- )
+    <Navbar
+      bg="primary"
+      className="d-flex flex-row align-items-center justify-content-between  sticky-top">
+      <Nav.Item>
+        <h1 className='fs-1 fw-bolder text-light font-monospace'>Pokedex</h1>
+      </Nav.Item>
+
+      <ButtonGroup
+        className="d-flex flex-row align-self-center">
+
+        <NavLink
+          exact to="/home">
+          <Button
+            className="btn-outline-light">
+            Home
+            </Button>
+        </NavLink>
+
+        <NavLink
+          exact to="/collection">
+          <Button
+            className="btn-outline-light">
+            Collection
+            </Button>
+        </NavLink>
+
+      </ButtonGroup>
+    </Navbar>
+  );
 };
 
-export default NavBar;
+export default Navigation;
+
