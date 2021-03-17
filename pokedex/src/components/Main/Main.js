@@ -1,32 +1,38 @@
-import SingleCard from '../Single_card/single_card'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React from "react";
+import SingleCard from "../SingleCard/SingleCard";
+import { Container, Button } from 'react-bootstrap';
 
 
+const Main = ({ pokemons,
+  catchPokemon,
+  loadMore,
+  count,
+  selectPokemon }) => {
 
-const Main = () => {
+  const elements = pokemons.map(item => {
+    return <SingleCard
+      {...item}
+      key={item.id}
+      catchPokemon={() => catchPokemon(item.id)}
+      selectPokemon={(desc) => selectPokemon(desc)}
+    />;
+  });
+
   return (
-  <Container fluid >
-    <Row  md ='5' className='mx-auto'>
-      <Col ><SingleCard/></Col>
-      <Col ><SingleCard/></Col>
-      <Col ><SingleCard/></Col>
-      <Col ><SingleCard/></Col>
-      <Col ><SingleCard/></Col>
-
-  </Row>
-   <Row>
-      <Col><SingleCard/></Col>
-      <Col><SingleCard/></Col>
-      <Col><SingleCard/></Col>
-      <Col><SingleCard/></Col>
-      <Col><SingleCard/></Col>
-
-    </Row>
-
-  </Container>
+    <Container fluid
+      className="d-flex flex-row flex-wrap justify-content-center" >
+      {elements}
+      <div Container className="d-flex flex-wrap w-75 justify-content-center" >
+        <Button
+          variant="dark"
+          className="sticky-bottom"
+          onClick={() => loadMore(count)}
+        >
+          Load more
+            </Button>
+      </div>
+    </Container>
   )
-   };
+}
 
-   export default Main
+export default Main;
